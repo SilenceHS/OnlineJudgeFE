@@ -37,7 +37,7 @@
 </template>
 <script>
   import utils from '@/utils/utils'
-  import { codemirror } from 'vue-codemirror-lite'
+  import { codemirror } from 'vue-codemirror'
 
   // theme
   import 'codemirror/theme/monokai.css'
@@ -45,10 +45,10 @@
   import 'codemirror/theme/material.css'
 
   // mode
-  import 'codemirror/mode/clike/clike.js'
   import 'codemirror/mode/python/python.js'
-  import 'codemirror/mode/go/go.js'
-  import 'codemirror/mode/javascript/javascript.js'
+  // import 'codemirror/mode/clike/clike.js'
+  // import 'codemirror/mode/go/go.js'
+  // import 'codemirror/mode/javascript/javascript.js'
 
   // active-line.js
   import 'codemirror/addon/selection/active-line.js'
@@ -72,12 +72,12 @@
       languages: {
         type: Array,
         default: () => {
-          return ['C', 'C++', 'Java', 'Python2']
+          return ['C', 'C++', 'Java', 'Python3']
         }
       },
       language: {
         type: String,
-        default: 'C++'
+        default: 'Python3'
       },
       theme: {
         type: String,
@@ -89,7 +89,8 @@
         options: {
           // codemirror options
           tabSize: 4,
-          mode: 'text/x-csrc',
+          indentUnit: 4,
+          mode: 'text/x-csr',
           theme: 'solarized',
           lineNumbers: true,
           line: true,
@@ -102,7 +103,7 @@
           highlightSelectionMatches: {showToken: /\w/, annotateScrollbar: true}
         },
         mode: {
-          'C++': 'text/x-csrc'
+          'Python3': 'text/x-python'
         },
         themes: [
           {label: this.$i18n.t('m.Monokai'), value: 'monokai'},
@@ -117,8 +118,14 @@
         languages.forEach(lang => {
           mode[lang.name] = lang.content_type
         })
+        // console.log('before mode')
+        // console.log(mode)
+        // console.log(this.language)
         this.mode = mode
         this.editor.setOption('mode', this.mode[this.language])
+        // console.log('test')
+        // console.log(this.mode)
+        // console.log(this.mode[this.language])
       })
       this.editor.focus()
     },
@@ -155,12 +162,17 @@
     computed: {
       editor () {
         // get current editor object
+        // console.log('computed')
         return this.$refs.myEditor.editor
       }
     },
     watch: {
       'theme' (newVal, oldVal) {
+        // console.log('theme')
         this.editor.setOption('theme', newVal)
+      },
+      'language' (newVal, oldVal) {
+        this.onLangChange(newVal)
       }
     }
   }

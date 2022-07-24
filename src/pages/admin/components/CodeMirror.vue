@@ -2,7 +2,7 @@
   <codemirror v-model="currentValue" :options="options" ref="editor"></codemirror>
 </template>
 <script>
-  import { codemirror } from 'vue-codemirror-lite'
+  import { codemirror } from 'vue-codemirror'
   import 'codemirror/mode/clike/clike.js'
   import 'codemirror/mode/python/python.js'
   import 'codemirror/theme/solarized.css'
@@ -13,7 +13,8 @@
       return {
         currentValue: '',
         options: {
-          mode: 'text/x-csrc',
+          indentUnit: 4,
+          mode: 'text/x-python',
           lineNumbers: true,
           lineWrapping: false,
           theme: 'solarized',
@@ -35,7 +36,7 @@
       },
       mode: {
         type: String,
-        default: 'text/x-csrc'
+        default: 'text/x-python'
       }
     },
     mounted () {

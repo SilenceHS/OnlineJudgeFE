@@ -32,7 +32,7 @@
         textarea: this.$refs.editor,
         toolbar: this.toolbar,
         pasteImage: true,
-        markdown: false,
+        markdown: true,
         upload: {
           url: '/api/admin/upload_image/',
           params: null,

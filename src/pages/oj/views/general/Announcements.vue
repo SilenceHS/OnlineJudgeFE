@@ -37,11 +37,12 @@
     </transition-group>
   </Panel>
 </template>
-
 <script>
   import api from '@oj/api'
   import Pagination from '@oj/components/Pagination'
-
+  import hl from 'highlight11/lib/common.js'
+  import 'highlight11/styles/atom-one-dark.css'
+  import 'highlight11/lib/languages/python.js'
   export default {
     name: 'Announcement',
     components: {
@@ -59,6 +60,10 @@
     },
     mounted () {
       this.init()
+    },
+    updated () {
+      console.log('up')
+      hl.highlightAll()
     },
     methods: {
       init () {

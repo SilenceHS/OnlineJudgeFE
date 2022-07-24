@@ -48,7 +48,7 @@ export const m = {
   Menu: '菜单',
   Chart: '图表',
   Auto_Refresh: '自动刷新',
-  RealName: '真名',
+  RealName: '真实姓名',
   Force_Update: '强制刷新',
   download_csv: '下载 csv',
   TotalTime: '总时间',
@@ -65,7 +65,7 @@ export const m = {
   Check_It: '现在检查',
   // ACMRank.vue
   ACM_Ranklist: 'ACM 排名',
-  mood: '格言',
+  mood: '昵称',
   AC: 'AC',
   Rating: '评分',
   // Announcements.vue

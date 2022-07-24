@@ -208,7 +208,8 @@
   import {JUDGE_STATUS, CONTEST_STATUS, buildProblemCodeKey} from '@/utils/constants'
   import api from '@oj/api'
   import {pie, largePie} from './chartData'
-
+  import hl from 'highlight11/lib/common.js'
+  import 'highlight11/styles/atom-one-dark.css'
   // 只显示这些状态的图形占用
   const filtedStatus = ['-1', '-2', '0', '1', '2', '3', '4', '8']
 
@@ -274,6 +275,9 @@
     mounted () {
       this.$store.commit(types.CHANGE_CONTEST_ITEM_VISIBLE, {menu: false})
       this.init()
+    },
+    updated () {
+      hl.highlightAll()
     },
     methods: {
       ...mapActions(['changeDomTitle']),
@@ -506,6 +510,7 @@
     watch: {
       '$route' () {
         this.init()
+        console.log('111')
       }
     }
   }
