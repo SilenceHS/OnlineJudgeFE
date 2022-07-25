@@ -406,6 +406,12 @@
           this.$error(this.$i18n.t('m.Code_can_not_be_empty'))
           return
         }
+        var dict = {'（': '(', '）': ')', '：': ':', '，': ',', '”': '"', '“': '"', '‘': '\'', '’': '\''}
+        var s = this.code
+        for (let key in dict) {
+          s = s.replaceAll(key, dict[key])
+        }
+        this.code = s
         this.submissionId = ''
         this.result = {result: 9}
         this.submitting = true
